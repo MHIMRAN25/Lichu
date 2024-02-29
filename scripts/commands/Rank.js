@@ -1,4 +1,4 @@
-module.exports.config = {
+scripts.exports.config = {
 	name: "rankv2",
 	version: "2.0.0",
 	hasPermssion: 0,
@@ -16,7 +16,7 @@ module.exports.config = {
 	}
 };
 
-module.exports.makeRankCard = async (data) => {    
+scripts.exports.makeRankCard = async (data) => {    
     /*
     * 
     * Remake from Canvacord
@@ -123,24 +123,24 @@ module.exports.makeRankCard = async (data) => {
 	fs.writeFileSync(pathImg, imageBuffer);
 	return pathImg;
 }
-module.exports.circle = async (image) => {
+scripts.exports.circle = async (image) => {
     const jimp = global.nodemodule["jimp"];
 	image = await jimp.read(image);
 	image.circle();
 	return await image.getBufferAsync("image/png");
 }
 
-module.exports.expToLevel = (point) => {
+scripts.exports.expToLevel = (point) => {
 	if (point < 0) return 0;
 	return Math.floor((Math.sqrt(1 + (4 * point) / 3) + 1) / 2);
 }
 
-module.exports.levelToExp = (level) => {
+scripts.exports.levelToExp = (level) => {
 	if (level <= 0) return 0;
 	return 3 * level * (level - 1);
 }
 
-module.exports.getInfo = async (uid, Currencies) => {
+scripts.exports.getInfo = async (uid, Currencies) => {
 	let point = (await Currencies.getData(uid)).exp;
 	const level = this.expToLevel(point);
 	const expCurrent = point - this.levelToExp(level);
@@ -148,7 +148,7 @@ module.exports.getInfo = async (uid, Currencies) => {
 	return { level, expCurrent, expNextLevel };
 }
 
-module.exports.onLoad = async function () {
+scripts.exports.onLoad = async function () {
 	const { resolve } = global.nodemodule["path"];
     const { existsSync, mkdirSync } = global.nodemodule["fs-extra"];
     const { downloadFile } = global.utils;
@@ -160,7 +160,7 @@ module.exports.onLoad = async function () {
 	if (!existsSync(resolve(__dirname, 'cache', 'rankcard.png'))) await downloadFile("https://raw.githubusercontent.com/catalizcs/storage-data/master/rank/rank_card/rankcard.png", resolve(__dirname, 'cache', 'rankcard.png'));
 }
 
-module.exports.run = async ({ event, api, args, Currencies, Users }) => {
+scripts.exports.run = async ({ event, api, args, Currencies, Users }) => {
 	const fs = global.nodemodule["fs-extra"];
 	
 	let dataAll = (await Currencies.getAll(["userID", "exp"]));
