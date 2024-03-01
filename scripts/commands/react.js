@@ -1,4 +1,4 @@
-module.exports.config = {
+scripts.exports.config = {
 	name: "react",
 	version: "1.0.0",
 	permission: 2,
@@ -11,7 +11,7 @@ module.exports.config = {
 };
 
 
-module.exports.run = async ({ api, event, args }) => {
+scripts.exports.run = async ({ api, event, args }) => {
   const allType = "unlike/like/love/heart/haha/wow/sad/angry".split("/");
   const postID = args[0];
   const type = args[1];
