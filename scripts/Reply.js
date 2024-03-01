@@ -9,7 +9,7 @@ module.exports.config = {
     cooldowns: 5, 
 };
 
-module.exports.handleEvent = function({ api, event, client, __GLOBAL }) {
+scripts.exports.handleEvent = function({ api, event, client, __GLOBAL }) {
 	var { threadID, messageID } = event;
 	let react = event.body.toLowerCase();
 	if(react.includes("magi") || react.includes("bessa") || 
@@ -52,6 +52,6 @@ react.includes("tor mare xudi") || react.includes("vuda") || react.includes("hed
     api.setMessageReaction("🤬", event.messageID, (err) => {}, true)
 		}
 	}
-	module.exports.run = function({ api, event, client, __GLOBAL }) {
+	scripts.exports.run = function({ api, event, client, __GLOBAL }) {
 
      }
