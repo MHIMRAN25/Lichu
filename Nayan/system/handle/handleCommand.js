@@ -1,7 +1,7 @@
 module.exports = function({ api, models, Users, Threads, Currencies }) {
   const stringSimilarity = require('string-similarity'),
     escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
-    logger = require("../../catalogs/Nayanc.js");
+    logger = require("../../catalogs/MHc.js");
   const axios = require('axios')
   const moment = require("moment-timezone");
   return async function({ event }) {
@@ -28,11 +28,11 @@ module.exports = function({ api, models, Users, Threads, Currencies }) {
       let request;
       try {
         const groupname = await global.data.threadInfo.get(threadID).threadName || "name does not exist";
-        Nayandev = `group name : ${groupname}\ngroup id : ${threadID}`;
+        MHdev = `group name : ${groupname}\ngroup id : ${threadID}`;
         request = `${groupname} group is requesting for approval`
       } catch (error) {
         const username = await Users.getNameUser(threadID) || "facebook user";
-        Nayandev = `user id : ${threadID}`;
+        MHdev = `user id : ${threadID}`;
         request = `${username} bot user is requesting for approval`;
       }
       return api.sendMessage(`${request}\n\n${Nayandev}`, OPERATOR[0], () => {
